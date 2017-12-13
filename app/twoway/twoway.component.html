@@ -1,0 +1,87 @@
+<b>1. msg-app</b>
+<br/>
+<br/>
+<app-msg-twoway [(cdMsg)]="msg"> </app-msg-twoway>
+
+<br/>
+<br/>
+
+<app-msg-twoway bindon-cdMsg="msg"> </app-msg-twoway>
+
+<br/>
+<br/>
+
+<app-msg-twoway [cdMsg]="msg" (cdMsgChange)="msg=$event"> </app-msg-twoway>
+
+<br/>
+<br/>
+
+
+<b>2. text-app</b>
+<br/>
+<br/>
+
+<input [(ngModel)]="myMsg" />
+
+<br/>
+<br/>
+
+
+<input bindon-ngModel="myMsg" />
+
+<br/>
+<br/> Event name pattern USED
+<input [ngModel]="myMsg" (ngModelChange)="myMsg=$event" />
+<br/>
+<br/> NO pattern RULES
+<input [value]="myMsg" (input)="myMsg=$event.target.value" />
+<br/>
+<br/> OUTPUT :{{myMsg}}
+<br/>
+<br/>
+
+<br/>
+<b>3. alias-app</b>
+<br/>
+<br/>
+<div>
+  <app-alias-twoway [(myCity)]="city"> </app-alias-twoway>
+  {{city}}
+</div>
+
+<br/>
+<br/>
+<br/>
+<b>4. size-app</b>
+<br/>
+<br/>
+<div>
+  <app-size-twoway [(cdTextSize)]="textSize"> </app-size-twoway>
+  <p [style.font-size.px]="textSize">Hello World!</p>
+</div>
+
+<br/>
+<br/>
+<b>5. select-app</b>
+<br/>
+<br/>
+<div>
+  <app-select-twoway [cdColors]="colors"> </app-select-twoway>
+</div>
+
+<br/>
+<br/>
+<b>6. case-app</b>
+<br/>
+<br/>
+<div>
+  <app-case-twoway [(myName)]="emp.name"> </app-case-twoway>
+  <p>{{emp.name}} </p>
+</div>
+
+<b>7. upper-case-app</b>
+<br/>
+<br/>
+<div>
+  <app-upper-case-twoway> </app-upper-case-twoway>
+</div>

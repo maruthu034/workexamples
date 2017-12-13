@@ -1,0 +1,6 @@
+.my-theme {
+    background-color: blue; 
+}
+.my-theme .active {
+    color: white;
+} 

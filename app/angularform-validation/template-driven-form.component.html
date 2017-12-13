@@ -1,0 +1,106 @@
+<h3>Template Driven Form</h3>
+<p *ngIf="isValidFormSubmitted" [ngClass]="'success'">
+    Form submitted successfully.
+</p>
+<form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td>
+                <input name="userName" [ngModel]="user.userName" required minlength="5" maxlength="7" #uname="ngModel">
+                <div *ngIf="uname.errors && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+
+                    <div *ngIf="uname.errors.required">
+                        Name required.
+                    </div>
+                    <div *ngIf="uname.errors.minlength">
+                        Name must be at least 5 characters long.
+                    </div>
+
+
+                </div>
+                <!-- <div *ngIf="uname.errors?.minlength && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+                    Name must be at least 5 characters long.
+                </div>
+                <div *ngIf="uname.errors?.maxlength && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+                    Name should be 7 characters only.
+                </div> -->
+            </td>
+        </tr>
+        <tr>
+            <td>Gender:</td>
+            <td>
+                <input type="radio" value="male" name="gender" [ngModel]="user.gender" required #gender="ngModel"> Male
+                <input type="radio" value="female" name="gender" [ngModel]="user.gender" required #gender="ngModel"> Female
+                <div *ngIf="gender.invalid && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+                    Gender required.
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Select Profile: </td>
+            <td>
+                <select name="profile" [(ngModel)]="user.profile" required #profile="ngModel">
+                    <option *ngFor="let prf of allProfiles" [ngValue]="prf">
+                        {{ prf.prName }}
+                    </option>
+                </select>
+                <div *ngIf="profile.invalid && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+                    Profile required.
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Accept T & C </td>
+            <td>
+                <input type="checkbox" name="isTCAccepted" [ngModel]="user.isTCAccepted" required #tc="ngModel">
+                <div *ngIf="tc.invalid && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+                    Accept T & C.
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Primary Email:</td>
+            <td>
+                <input name="primaryEmail" [ngModel]="user.primaryEmail" email #prmEmail="ngModel">
+                <div *ngIf="prmEmail.errors && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+                    <div *ngIf="prmEmail.errors.email">
+                        Primary Email not valid.
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Secondary Email:</td>
+            <td>
+                <input name="secondaryEmail" [ngModel]="user.secondaryEmail" [email]="validateEmail" #secEmail="ngModel">
+                <div *ngIf="secEmail.errors && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+                    <div *ngIf="secEmail.errors.email">
+                        Secondary Email not valid.
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Official Email:</td>
+            <td>
+                <input name="officialEmail" [ngModel]="user.officialEmail" required [pattern]="emailPattern" #offEmail="ngModel">
+                <div *ngIf="offEmail.errors && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+                    <div *ngIf="offEmail.errors.required">
+                        Official Email required.
+                    </div>
+                    <div *ngIf="offEmail.errors.pattern">
+                        Official Email not valid.
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <button>Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>

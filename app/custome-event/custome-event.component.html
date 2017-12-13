@@ -1,0 +1,48 @@
+<app-custom-event></app-custom-event>
+<h2>event handling methods</h2>
+<b>Input Event Binding </b>
+
+<input [value]="msg1" (input)="msg1=$event.target.value">
+
+<input [value]="msg1" (input)="setMsg($event.target.value)"> {{msg1}}
+
+<br/>
+<br/>
+<b>Click Event Binding </b>
+<br/>
+<br/>
+<button (click)="isValid=true">True</button>
+<button (click)="isValid=false">False</button>
+<p *ngIf="isValid">
+    Data is valid.
+</p>
+<p *ngIf="!isValid">
+    Data is not valid.
+</p>
+
+<br/>
+<br/>
+<b>Keydown and Keyup Event Binding </b>
+<br/>
+<br/>
+<input on-keydown="msg2='Key down'" (keyup)="msg2='Key Up'"> {{msg2}}
+
+<br/>
+<br/>
+<b>Change Event Binding </b>
+<br/>
+<br/>
+<input on-change="changeText($event.target.value)">
+<p [innerHTML]="msg3"> </p>
+
+
+<h1>Attribute Binding</h1>
+<table [border]="bdr" [attr.height]="h" [width]="w">
+    <tr>
+       <td [attr.colspan]="clspn"> A + B </td>
+    </tr>
+    <tr>
+       <td> C </td>
+       <td> D </td>
+    </tr>
+  </table> 
